@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://l4h0pxg6wj5i"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kx5kc"]
+distance = -632.0
+
+[node name="room_2" type="Node2D" unique_id=372911137]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=434032550]
+offset_right = 1150.0
+offset_bottom = 632.0
+color = Color(0.39051932, 2.3463741e-05, 0.32098863, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=108674404]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=542066504]
+shape = SubResource("WorldBoundaryShape2D_kx5kc")
