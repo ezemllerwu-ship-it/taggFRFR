@@ -16,4 +16,4 @@ color = Color(0.390519, 2.34637e-05, 0.320989, 1)
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(588, 310)
+position = Vector2(364, 375)

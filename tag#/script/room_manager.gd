@@ -11,14 +11,13 @@ var wanted_room
 func _ready() -> void:
 	wanted_room = room_1
 	spawn_room()
-	spawn_player()
 
 func spawn_room():
+	var children = get_children()
 	var top_node = $"."
 	var room = wanted_room.instantiate()
 	top_node.add_child(room)
-
-
+	spawn_player()
 
 func spawn_player():
 	var player = player.instantiate()

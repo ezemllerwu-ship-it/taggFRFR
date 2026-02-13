@@ -14,6 +14,5 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_leve_body_entered(body: Node2D) -> void:
+	queue_free()
 	room_manager.spawn_room()
-	$player.queue_free()
-	room_manager.spawn_player()
