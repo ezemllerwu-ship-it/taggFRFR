@@ -1,18 +1,19 @@
 extends Node2D
 
+@onready var room_2 = load("res://scene/room_2.tscn")
+@onready var room_manager = get_parent()
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var spawn = $spawn.global_position
-	print("yippe")
-	var room_manager = get_parent()
-	room_manager.set_spawn($spawn)
+	var wanted = room_2
+	room_manager.set_wanted_room(wanted)
+	room_manager.set_spawn(spawn)
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _on_leve_body_entered(body: Node2D) -> void:
-	var room_manager = get_parent()
-	
+	room_manager.spawn_room()
+	$player.queue_free()
+	room_manager.spawn_player()
