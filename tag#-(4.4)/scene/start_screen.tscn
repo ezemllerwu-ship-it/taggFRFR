@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ojnpxkchi1t7"]
+
+[ext_resource type="Script" uid="uid://cfhj4l13wj7ap" path="res://script/start_screen.gd" id="1_gkif4"]
+
+[node name="start screen" type="Node2D"]
+script = ExtResource("1_gkif4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 645.0
+color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 354.0
+offset_top = 215.0
+offset_right = 789.0
+offset_bottom = 378.0
+text = "start"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
