@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx2xlw4fv11ug"]
+[gd_scene format=3 uid="uid://cx2xlw4fv11ug"]
 
 [ext_resource type="Script" uid="uid://c38v7cmdsux4w" path="res://script/room_1.gd" id="1_p56th"]
 
@@ -8,26 +8,41 @@ distance = -632.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p56th"]
 size = Vector2(49.5, 254)
 
-[node name="room_1" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4qhe"]
+size = Vector2(40, 480)
+
+[node name="room_1" type="Node2D" unique_id=788419342]
 script = ExtResource("1_p56th")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=751231494]
 offset_right = 1150.0
 offset_bottom = 632.0
 color = Color(0.133333, 0.247059, 0.2, 1)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=211566975]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1651219902]
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
-[node name="spawn" type="Marker2D" parent="."]
+[node name="spawn" type="Marker2D" parent="." unique_id=207672386]
 position = Vector2(583, 160)
 
-[node name="leve" type="Area2D" parent="."]
+[node name="leve" type="Area2D" parent="." unique_id=1078053265]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leve"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leve" unique_id=1015014567]
 position = Vector2(1080, 437)
 shape = SubResource("RectangleShape2D_p56th")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=903051722]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1513822169]
+position = Vector2(116, 384)
+shape = SubResource("RectangleShape2D_q4qhe")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=1996388060]
+offset_left = 96.0
+offset_top = 144.0
+offset_right = 136.0
+offset_bottom = 624.0
 
 [connection signal="body_entered" from="leve" to="." method="_on_leve_body_entered"]

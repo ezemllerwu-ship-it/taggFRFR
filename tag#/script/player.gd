@@ -30,24 +30,14 @@ var is_grabbing := false
 
 func _physics_process(delta: float) -> void:
 	get_input_axis()
-
-	# Gravity
 	if !is_dashing and velocity.y < LIMIT_SPEED_Y:
 		velocity.y += GRAVITY * delta
-
-	# Dash
 	handle_dash(delta)
-
-	# Wall slide
-	handle_wall_slide(delta)
-
-	# Horizontal movement (disabled during wall jump lock)
+	handle_wall_slide(delta)	
 	if wall_jump_timer <= 0.0 and !is_dashing and !is_grabbing:
 		handle_horizontal(delta)
 	else:
 		wall_jump_timer -= delta
-
-	# Coyote time
 	if is_on_floor():
 		can_jump = true
 		coyote_timer = COYOTE_TIME
@@ -55,14 +45,10 @@ func _physics_process(delta: float) -> void:
 		coyote_timer -= delta
 		if coyote_timer <= 0.0:
 			can_jump = false
-
-	# Jump buffer
 	if jump_buffer_timer > 0.0:
 		jump_buffer_timer -= delta
 		if is_on_floor():
 			do_jump(delta)
-
-	# Jump input
 	if Input.is_action_just_pressed("jump"):
 		if can_jump:
 			do_jump(delta)
@@ -70,26 +56,17 @@ func _physics_process(delta: float) -> void:
 			do_wall_jump(delta)
 		else:
 			jump_buffer_timer = JUMP_BUFFER
-
-	# Variable jump height
 	if Input.is_action_just_released("jump"):
 		if velocity.y < -MIN_JUMP_FORCE * delta:
 			velocity.y = -MIN_JUMP_FORCE * delta
-
 	move_and_slide()
 
-# -------------------------
-# INPUT
-# -------------------------
 func get_input_axis() -> void:
 	axis = Vector2(
 		int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")),
 		int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	).normalized()
 
-# -------------------------
-# JUMPING
-# -------------------------
 func do_jump(delta: float) -> void:
 	velocity.y = -JUMP_FORCE * delta
 	can_jump = false
@@ -102,9 +79,6 @@ func do_wall_jump(delta: float) -> void:
 		velocity.y = -JUMP_FORCE * delta
 		wall_jump_timer = WALL_JUMP_LOCK
 
-# -------------------------
-# WALL LOGIC
-# -------------------------
 func is_on_wall_custom() -> bool:
 	return $RayCast/ray_cast_left.is_colliding() or $RayCast/ray_cast_right.is_colliding()
 
@@ -129,9 +103,6 @@ func handle_wall_slide(delta: float) -> void:
 		wall_sliding = false
 		is_grabbing = false
 
-# -------------------------
-# HORIZONTAL MOVEMENT
-# -------------------------
 func handle_horizontal(delta: float) -> void:
 	if axis.x != 0:
 		velocity.x = move_toward(
@@ -142,9 +113,6 @@ func handle_horizontal(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, 0.4)
 
-# -------------------------
-# DASH
-# -------------------------
 func handle_dash(delta: float) -> void:
 	if !has_dashed and Input.is_action_just_pressed("dash"):
 		is_dashing = true
