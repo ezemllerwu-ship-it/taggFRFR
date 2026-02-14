@@ -5,8 +5,6 @@ extends Node2D
 
 func _ready() -> void:
 	var spawn = $spawn.global_position
-	#var wanted = room_2
-	#room_manager.set_wanted_room(wanted)
 	room_manager.set_spawn(spawn)
 
 
@@ -14,6 +12,5 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_leve_body_entered(body: Node2D) -> void:
-	
 	room_manager.reset()
 	room_manager.spawn_room()

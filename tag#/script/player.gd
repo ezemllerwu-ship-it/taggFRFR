@@ -1,61 +1,161 @@
-# Player.gd
 extends CharacterBody2D
 
+# --- CONSTANTS ---
+const ACCELERATION := 3000.0
+const MAX_SPEED := 18000.0
+const LIMIT_SPEED_Y := 1200.0
+const JUMP_FORCE := 36000.0
+const MIN_JUMP_FORCE := 12000.0
+const COYOTE_TIME := 0.1
+const JUMP_BUFFER := 0.1
+const WALL_JUMP_FORCE := 18000.0
+const WALL_JUMP_LOCK := 0.15
+const WALL_SLIDE_FACTOR := 0.8
+const GRAVITY := 2100.0
+const DASH_SPEED := 36000.0
+const DASH_DURATION := 0.25
 
-const SPEED = 1000       # Horizontal movement speed (pixels/second)
-const JUMP_VELOCITY = -500.0 # Jump strength (negative because Y goes down)
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+# --- VARIABLES ---
+var axis := Vector2.ZERO
+var coyote_timer := 0.0
+var jump_buffer_timer := 0.0
+var wall_jump_timer := 0.0
+var dash_timer := 0.0
 
+var can_jump := false
+var wall_sliding := false
+var is_dashing := false
+var has_dashed := false
+var is_grabbing := false
 
-var air_jumps = 5        # For a double jump
-var current_air_jumps = 0
+func _physics_process(delta: float) -> void:
+	get_input_axis()
 
-var coyote_timer = 0.0
-const COYOTE_TIME_THRESHOLD = 0.1 # 100 milliseconds of coyote time
+	# Gravity
+	if !is_dashing and velocity.y < LIMIT_SPEED_Y:
+		velocity.y += GRAVITY * delta
 
-var jump_buffer_timer = 0.0
-const JUMP_BUFFER_TIME_THRESHOLD = 0.1 # 100 milliseconds for jump buffer
+	# Dash
+	handle_dash(delta)
 
-func _physics_process(delta):
-	# Apply gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	# Wall slide
+	handle_wall_slide(delta)
+
+	# Horizontal movement (disabled during wall jump lock)
+	if wall_jump_timer <= 0.0 and !is_dashing and !is_grabbing:
+		handle_horizontal(delta)
 	else:
-		# Reset air jumps and coyote time when on the floor
-		current_air_jumps = air_jumps
-		coyote_timer = COYOTE_TIME_THRESHOLD # Reload coyote time
+		wall_jump_timer -= delta
 
-	# Update timers
-	if coyote_timer > 0:
+	# Coyote time
+	if is_on_floor():
+		can_jump = true
+		coyote_timer = COYOTE_TIME
+	else:
 		coyote_timer -= delta
-	if jump_buffer_timer > 0:
+		if coyote_timer <= 0.0:
+			can_jump = false
+
+	# Jump buffer
+	if jump_buffer_timer > 0.0:
 		jump_buffer_timer -= delta
+		if is_on_floor():
+			do_jump(delta)
 
-	# Handle Jump input (with buffer and coyote time)
-	if Input.is_action_just_pressed("jump"): # "jump" is an action defined in InputMap
-		jump_buffer_timer = JUMP_BUFFER_TIME_THRESHOLD
+	# Jump input
+	if Input.is_action_just_pressed("jump"):
+		if can_jump:
+			do_jump(delta)
+		elif is_on_wall():
+			do_wall_jump(delta)
+		else:
+			jump_buffer_timer = JUMP_BUFFER
 
-	if jump_buffer_timer > 0:
-		if is_on_floor() or coyote_timer > 0: # Normal jump or coyote time jump
-			velocity.y = JUMP_VELOCITY
-			jump_buffer_timer = 0 # Consume buffer
-			coyote_timer = 0 # Consume coyote time if used
-		elif current_air_jumps > 0: # Air jump (double jump, etc.)
-			velocity.y = JUMP_VELOCITY * 0.8 # Perhaps a bit weaker
-			current_air_jumps -= 1
-			jump_buffer_timer = 0 # Consume buffer
-
-	# Handle Horizontal input
-	var direction = Input.get_axis("move_left", "move_right") # "move_left" & "move_right" from InputMap
-
-	# Movement with simple acceleration/deceleration (you can make this more complex)
-	if direction:
-		# We use move_toward for basic acceleration/deceleration
-		velocity.x = move_toward(velocity.x, direction * SPEED, SPEED * 10.0 * delta) # Last value is acceleration
-		# Flip the sprite
-		if $AnimatedSprite2D: # Ensure the node exists
-			$AnimatedSprite2D.flip_h = (direction < 0)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * 2.0 * delta) # Decelerate to a stop
+	# Variable jump height
+	if Input.is_action_just_released("jump"):
+		if velocity.y < -MIN_JUMP_FORCE * delta:
+			velocity.y = -MIN_JUMP_FORCE * delta
 
 	move_and_slide()
+
+# -------------------------
+# INPUT
+# -------------------------
+func get_input_axis() -> void:
+	axis = Vector2(
+		int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")),
+		int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	).normalized()
+
+# -------------------------
+# JUMPING
+# -------------------------
+func do_jump(delta: float) -> void:
+	velocity.y = -JUMP_FORCE * delta
+	can_jump = false
+	jump_buffer_timer = 0.0
+
+func do_wall_jump(delta: float) -> void:
+	var dir := wall_direction()
+	if dir != 0:
+		velocity.x = -dir * WALL_JUMP_FORCE * delta
+		velocity.y = -JUMP_FORCE * delta
+		wall_jump_timer = WALL_JUMP_LOCK
+
+# -------------------------
+# WALL LOGIC
+# -------------------------
+func is_on_wall_custom() -> bool:
+	return $RayCast/ray_cast_left.is_colliding() or $RayCast/ray_cast_right.is_colliding()
+
+func wall_direction() -> int:
+	if $RayCast/ray_cast_left.is_colliding():
+		return -1
+	if $RayCast/ray_cast_right.is_colliding():
+		return 1
+	return 0
+
+func handle_wall_slide(delta: float) -> void:
+	if !is_on_floor() and is_on_wall_custom() and velocity.y > 0:
+		wall_sliding = true
+
+		if Input.is_action_pressed("grab"):
+			is_grabbing = true
+			velocity.y = axis.y * 12000 * delta
+		else:
+			is_grabbing = false
+			velocity.y *= WALL_SLIDE_FACTOR
+	else:
+		wall_sliding = false
+		is_grabbing = false
+
+# -------------------------
+# HORIZONTAL MOVEMENT
+# -------------------------
+func handle_horizontal(delta: float) -> void:
+	if axis.x != 0:
+		velocity.x = move_toward(
+			velocity.x,
+			axis.x * MAX_SPEED * delta,
+			ACCELERATION * delta
+		)
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 0.4)
+
+# -------------------------
+# DASH
+# -------------------------
+func handle_dash(delta: float) -> void:
+	if !has_dashed and Input.is_action_just_pressed("dash"):
+		is_dashing = true
+		has_dashed = true
+		dash_timer = DASH_DURATION
+		velocity = axis * DASH_SPEED * delta
+
+	if is_dashing:
+		dash_timer -= delta
+		if dash_timer <= 0.0:
+			is_dashing = false
+
+	if is_on_floor():
+		has_dashed = false

@@ -4,17 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://q57eh3ox6aob" path="res://ass/icon.svg" id="1_xo3ru"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjaqi"]
-size = Vector2(106, 185)
+size = Vector2(107, 186)
 
-[node name="player" type="CharacterBody2D" unique_id=1834582380]
+[node name="player" type="CharacterBody2D" unique_id=363455168]
 z_index = 2
 script = ExtResource("1_hjaqi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354722367]
-position = Vector2(54, 93)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1595835913]
+position = Vector2(53.5, 93)
 shape = SubResource("RectangleShape2D_hjaqi")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1980862715]
-position = Vector2(54, 93)
-scale = Vector2(0.828125, 1.45313)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=183422085]
+position = Vector2(53.500004, 93.00016)
+scale = Vector2(0.8359375, 1.4531276)
 texture = ExtResource("1_xo3ru")
+
+[node name="RayCast" type="Node2D" parent="." unique_id=1905348773]
+
+[node name="ray_cast_left" type="RayCast2D" parent="RayCast" unique_id=885001261]
+position = Vector2(54, 93)
+target_position = Vector2(-60, 0)
+
+[node name="ray_cast_right" type="RayCast2D" parent="RayCast" unique_id=2044495858]
+position = Vector2(54, 93)
+target_position = Vector2(59, 0)

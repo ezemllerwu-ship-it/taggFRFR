@@ -22,7 +22,7 @@ color = Color(0.133333, 0.247059, 0.2, 1)
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
 [node name="spawn" type="Marker2D" parent="."]
-position = Vector2(265, 323)
+position = Vector2(583, 160)
 
 [node name="leve" type="Area2D" parent="."]
 

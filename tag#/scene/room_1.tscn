@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cx2xlw4fv11ug"]
+[gd_scene load_steps=4 format=3 uid="uid://cx2xlw4fv11ug"]
 
 [ext_resource type="Script" uid="uid://c38v7cmdsux4w" path="res://script/room_1.gd" id="1_p56th"]
 
@@ -8,25 +8,25 @@ distance = -632.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p56th"]
 size = Vector2(49.5, 254)
 
-[node name="room_1" type="Node2D" unique_id=1274431773]
+[node name="room_1" type="Node2D"]
 script = ExtResource("1_p56th")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=11814171]
+[node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1150.0
 offset_bottom = 632.0
 color = Color(0.133333, 0.247059, 0.2, 1)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=352637156]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=427175542]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
-[node name="spawn" type="Marker2D" parent="." unique_id=767629082]
+[node name="spawn" type="Marker2D" parent="."]
 position = Vector2(583, 160)
 
-[node name="leve" type="Area2D" parent="." unique_id=1746739862]
+[node name="leve" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leve" unique_id=251113980]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leve"]
 position = Vector2(1080, 437)
 shape = SubResource("RectangleShape2D_p56th")
 

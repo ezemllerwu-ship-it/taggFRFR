@@ -19,7 +19,6 @@ func spawn_room():
 	spawn_player()
 	print_tree_pretty()
 
-
 func spawn_player():
 	var player_instance = player.instantiate()
 	add_child(player_instance)
@@ -33,9 +32,6 @@ func reset():
 func set_spawn(spawn):
 	spawn_position = spawn
 
-#func set_wanted_room(wanted):
-	#wanted_room = wanted
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
