@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-# --- CONSTANTS ---
+
 const ACCELERATION := 3000.0
 const MAX_SPEED := 18000.0
 const LIMIT_SPEED_Y := 1200.0
@@ -15,7 +15,6 @@ const GRAVITY := 2100.0
 const DASH_SPEED := 36000.0
 const DASH_DURATION := 0.25
 
-# --- VARIABLES ---
 var axis := Vector2.ZERO
 var coyote_timer := 0.0
 var jump_buffer_timer := 0.0

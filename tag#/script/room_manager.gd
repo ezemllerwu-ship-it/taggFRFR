@@ -10,8 +10,7 @@ var spawn_position
 var wanted_room = 0
 
 func _ready() -> void:
-	spawn_room()
-	
+	pass
 func spawn_room():
 	wanted_room += 1
 	var room = load(room_string + str(wanted_room) + ".tscn").instantiate()

@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5icli7mdkj1i"]
+[gd_scene format=3 uid="uid://b5icli7mdkj1i"]
 
 [ext_resource type="Script" uid="uid://cg1m4ajrqle5h" path="res://script/room_manager.gd" id="1_koe2p"]
+[ext_resource type="PackedScene" uid="uid://ojnpxkchi1t7" path="res://scene/start_screen.tscn" id="2_8408x"]
 
-[node name="room_manager" type="Node2D"]
+[node name="room_manager" type="Node2D" unique_id=896810590]
 script = ExtResource("1_koe2p")
+
+[node name="start screen" parent="." unique_id=534828144 instance=ExtResource("2_8408x")]
+position = Vector2(-1.0000076, 0.9999962)
