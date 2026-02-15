@@ -28,9 +28,11 @@ func reset():
 		room_manager.remove_child(n)
 		n.queue_free()
 
+func kill():
+		var player = get_node("player")
+		room_manager.remove_child(player)
+		player.queue_free()
+		spawn_player()
+
 func set_spawn(spawn):
 	spawn_position = spawn
-
-
-func _process(delta: float) -> void:
-	pass

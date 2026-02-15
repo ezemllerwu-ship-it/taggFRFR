@@ -6,43 +6,80 @@
 distance = -632.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p56th"]
-size = Vector2(49.5, 254)
+size = Vector2(48, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4qhe"]
-size = Vector2(40, 480)
+size = Vector2(64, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmt0s"]
+size = Vector2(16, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6iq"]
+size = Vector2(16, 384)
 
 [node name="room_1" type="Node2D" unique_id=788419342]
 script = ExtResource("1_p56th")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=751231494]
 offset_right = 1150.0
-offset_bottom = 632.0
+offset_bottom = 640.0
 color = Color(0.133333, 0.247059, 0.2, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=211566975]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1651219902]
+position = Vector2(0, 8)
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
 [node name="spawn" type="Marker2D" parent="." unique_id=207672386]
-position = Vector2(583, 160)
+position = Vector2(520, 472)
 
-[node name="leve" type="Area2D" parent="." unique_id=1078053265]
+[node name="leave" type="Area2D" parent="." unique_id=1078053265]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leve" unique_id=1015014567]
-position = Vector2(1080, 437)
+[node name="ColorRect" type="ColorRect" parent="leave" unique_id=1821610213]
+offset_left = 1056.0
+offset_top = 312.0
+offset_right = 1104.0
+offset_bottom = 568.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leave" unique_id=1015014567]
+position = Vector2(1080, 440)
 shape = SubResource("RectangleShape2D_p56th")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=903051722]
+[node name="kill_box" type="Area2D" parent="." unique_id=584912092]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1513822169]
-position = Vector2(116, 384)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill_box" unique_id=534818597]
+position = Vector2(80, 416)
 shape = SubResource("RectangleShape2D_q4qhe")
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=1996388060]
-offset_left = 96.0
-offset_top = 144.0
-offset_right = 136.0
-offset_bottom = 624.0
+[node name="ColorRect" type="ColorRect" parent="kill_box" unique_id=1448889245]
+offset_left = 48.0
+offset_top = 256.0
+offset_right = 112.0
+offset_bottom = 576.0
+color = Color(0.6853026, 0.124133535, 0.17531976, 1)
 
-[connection signal="body_entered" from="leve" to="." method="_on_leve_body_entered"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1926231639]
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=686072088]
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 464.0
+offset_bottom = 576.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=297934269]
+position = Vector2(456, 384)
+shape = SubResource("RectangleShape2D_rmt0s")
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D2" unique_id=1047959462]
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 592.0
+offset_bottom = 576.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1319777485]
+position = Vector2(584, 384)
+shape = SubResource("RectangleShape2D_pp6iq")
+
+[connection signal="body_entered" from="leave" to="." method="_on_leave_body_entered"]
+[connection signal="body_entered" from="kill_box" to="." method="_on_kill_box_body_entered"]
