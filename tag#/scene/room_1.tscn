@@ -17,6 +17,9 @@ size = Vector2(16, 384)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6iq"]
 size = Vector2(16, 384)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wrqj"]
+size = Vector2(96, 112)
+
 [node name="room_1" type="Node2D" unique_id=788419342]
 script = ExtResource("1_p56th")
 
@@ -28,7 +31,7 @@ color = Color(0.133333, 0.247059, 0.2, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=211566975]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1651219902]
-position = Vector2(0, 8)
+position = Vector2(176, 8)
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
 [node name="spawn" type="Marker2D" parent="." unique_id=207672386]
@@ -63,12 +66,12 @@ color = Color(0.6853026, 0.124133535, 0.17531976, 1)
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=686072088]
 offset_left = 448.0
-offset_top = 192.0
+offset_top = 40.0
 offset_right = 464.0
-offset_bottom = 576.0
+offset_bottom = 424.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=297934269]
-position = Vector2(456, 384)
+position = Vector2(456, 232)
 shape = SubResource("RectangleShape2D_rmt0s")
 
 [node name="ColorRect2" type="ColorRect" parent="StaticBody2D2" unique_id=1047959462]
@@ -80,6 +83,18 @@ offset_bottom = 576.0
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1319777485]
 position = Vector2(584, 384)
 shape = SubResource("RectangleShape2D_pp6iq")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=853426427]
+position = Vector2(256, 624)
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D3" unique_id=1658728158]
+offset_top = -96.0
+offset_right = 96.0
+offset_bottom = 16.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1157601276]
+position = Vector2(48, -40)
+shape = SubResource("RectangleShape2D_7wrqj")
 
 [connection signal="body_entered" from="leave" to="." method="_on_leave_body_entered"]
 [connection signal="body_entered" from="kill_box" to="." method="_on_kill_box_body_entered"]

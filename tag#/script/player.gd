@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const ACCEL := 9000.0
 const MAX_SPEED := 300.0
-const FRICTION := 0.15
+const FRICTION := 0.1
 
 const GRAVITY := 1800.0
 const FALL_GRAVITY := 2400.0
@@ -18,7 +18,7 @@ const WALL_JUMP_FORCE := Vector2(260, -420)
 const WALL_JUMP_LOCK := 0.2
 
 const DASH_SPEED := 800
-const DASH_DURATION := 0.25
+const DASH_DURATION := 0.20
 
 var axis := Vector2.ZERO
 var coyote_timer := 0.0
@@ -30,6 +30,7 @@ var grounded := false
 var grounded_timer := 0.0
 const GROUNDED_GRACE := 0.04
 
+var gravity_frozen = false
 var is_dashing := false
 var has_dashed := false
 var dash_dir := Vector2.ZERO
@@ -39,11 +40,12 @@ func _physics_process(delta):
 	update_grounded(delta)
 	get_input_axis()
 
-	if !is_dashing:
+	if !gravity_frozen:
 		if velocity.y > 0:
 			velocity.y += FALL_GRAVITY * delta
 		else:
 			velocity.y += GRAVITY * delta
+
 	velocity.y = min(velocity.y, MAX_FALL_SPEED)
 
 	handle_dash(delta)
@@ -90,9 +92,10 @@ func update_grounded(delta):
 
 func get_input_axis():
 	axis = Vector2(
-		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	)
+	Input.get_action_strength("ui_right") - 
+	Input.get_action_strength("ui_left"),
+	Input.get_action_strength("ui_down") - 
+	Input.get_action_strength("ui_up"))
 
 func do_jump():
 	velocity.y = -JUMP_FORCE
@@ -119,7 +122,7 @@ func handle_horizontal(delta):
 	if axis.x != 0:
 		velocity.x = move_toward(velocity.x, axis.x * MAX_SPEED, ACCEL * delta)
 	else:
-		velocity.x = lerp(velocity.x, 0.0, FRICTION)
+		velocity.x = lerp(velocity.x, 0.0, FRICTION * delta * 60)
 
 func handle_dash(delta):
 	if !has_dashed and Input.is_action_just_pressed("dash"):
@@ -127,12 +130,22 @@ func handle_dash(delta):
 		has_dashed = true
 		dash_timer = DASH_DURATION
 		dash_dir = axis
+		
 		if dash_dir == Vector2.ZERO:
-			dash_dir = Vector2.RIGHT
+			dash_dir = Vector2.UP
+		
 		dash_dir = dash_dir.normalized()
+		
+		if dash_dir.y < 0:
+			dash_dir.y *= 0.75 
+		elif dash_dir.y > 0.5:
+			dash_dir.y *= 1.25
 		velocity = dash_dir * DASH_SPEED
-
+		
+		gravity_frozen = true
 	if is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0:
 			is_dashing = false
+			gravity_frozen = false
+			velocity.x *= 0.6
