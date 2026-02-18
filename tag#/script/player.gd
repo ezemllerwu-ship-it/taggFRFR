@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const ACCEL := 2000.0
+const ACCEL := 2000
 const MAX_SPEED := 300.0
-const FRICTION := 0.15
+const FRICTION := 0.12
 
 const GRAVITY := 1800.0
 const FALL_GRAVITY := 2400.0
@@ -18,9 +18,9 @@ const WALL_JUMP_FORCE := Vector2( 320, -320)
 const WALL_JUMP_LOCK := 0.2
 
 
-const DASH_SPEED := 1000
-const DASH_DURATION := 0.20
-const DASH_NERF_UP := 0.40        
+const DASH_SPEED := 800
+const DASH_DURATION := 0.15
+const DASH_NERF_UP := 0.20        
 const DASH_NERF_DIAG_UP := 0.85
 const DASH_RESET_COOLDOWN := 0.1
 
@@ -43,7 +43,6 @@ func _physics_process(delta):
 	update_grounded()
 	get_input_axis()
 	gravity(delta)
-	
 	handle_dash(delta)
 	handle_horizontal(delta)
 	handle_coyote_time(delta)
@@ -157,8 +156,8 @@ func handle_dash(delta):
 	if is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0:
-			is_dashing = false
 			gravity_frozen = false
+			is_dashing = false
 			
 			if dash_dir.y < -0.6:
 				velocity.x *= DASH_NERF_UP
@@ -166,6 +165,8 @@ func handle_dash(delta):
 				velocity.x *= DASH_NERF_DIAG_UP
 
 func do_we_have_dash():
-	if is_on_floor() :
-		has_dash = false
+	if is_on_floor():
+		has_dash = true
 		
+func dash_refill():
+	has_dash = true

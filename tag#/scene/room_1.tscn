@@ -35,7 +35,7 @@ position = Vector2(176, 8)
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
 [node name="spawn" type="Marker2D" parent="." unique_id=207672386]
-position = Vector2(232, 280)
+position = Vector2(760, 208)
 
 [node name="leave" type="Area2D" parent="." unique_id=1078053265]
 
