@@ -12,13 +12,13 @@ size = Vector2(48, 256)
 size = Vector2(64, 320)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rmt0s"]
-size = Vector2(16, 384)
+size = Vector2(16, 360)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6iq"]
 size = Vector2(16, 384)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wrqj"]
-size = Vector2(96, 112)
+size = Vector2(96, 104)
 
 [node name="room_1" type="Node2D" unique_id=788419342]
 script = ExtResource("1_p56th")
@@ -35,7 +35,7 @@ position = Vector2(176, 8)
 shape = SubResource("WorldBoundaryShape2D_kx5kc")
 
 [node name="spawn" type="Marker2D" parent="." unique_id=207672386]
-position = Vector2(520, 472)
+position = Vector2(232, 280)
 
 [node name="leave" type="Area2D" parent="." unique_id=1078053265]
 
@@ -65,13 +65,13 @@ color = Color(0.6853026, 0.124133535, 0.17531976, 1)
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1926231639]
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=686072088]
-offset_left = 448.0
+offset_left = 416.0
 offset_top = 40.0
-offset_right = 464.0
-offset_bottom = 424.0
+offset_right = 432.0
+offset_bottom = 400.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=297934269]
-position = Vector2(456, 232)
+position = Vector2(424, 220)
 shape = SubResource("RectangleShape2D_rmt0s")
 
 [node name="ColorRect2" type="ColorRect" parent="StaticBody2D2" unique_id=1047959462]
@@ -88,12 +88,12 @@ shape = SubResource("RectangleShape2D_pp6iq")
 position = Vector2(256, 624)
 
 [node name="ColorRect2" type="ColorRect" parent="StaticBody2D3" unique_id=1658728158]
-offset_top = -96.0
+offset_top = -88.0
 offset_right = 96.0
 offset_bottom = 16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1157601276]
-position = Vector2(48, -40)
+position = Vector2(48, -36)
 shape = SubResource("RectangleShape2D_7wrqj")
 
 [connection signal="body_entered" from="leave" to="." method="_on_leave_body_entered"]
