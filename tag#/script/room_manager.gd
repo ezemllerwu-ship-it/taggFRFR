@@ -27,7 +27,7 @@ func reset():
 func kill():
 		var player_instince = get_node("player")
 		room_manager.remove_child(player_instince)
-		player.queue_free()
+		player_instince.queue_free()
 		spawn_player()
 
 func dash_refill():

@@ -12,8 +12,7 @@ size = Vector2(32, 32)
 script = ExtResource("1_a608r")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1014287786]
-offset_left = 8.0
-offset_right = 1158.0
+offset_right = 1150.0
 offset_bottom = 632.0
 color = Color(0.390519, 2.34637e-05, 0.320989, 1)
 
@@ -26,16 +25,15 @@ shape = SubResource("WorldBoundaryShape2D_kx5kc")
 position = Vector2(154, 358)
 
 [node name="dash_refill" type="Area2D" parent="." unique_id=428914664]
-position = Vector2(384, 232)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dash_refill" unique_id=519091568]
-position = Vector2(368, 136)
+position = Vector2(789, 364)
 shape = SubResource("RectangleShape2D_a608r")
 
 [node name="ColorRect2" type="ColorRect" parent="dash_refill" unique_id=1750263270]
-offset_left = 352.0
-offset_top = 120.0
-offset_right = 384.0
-offset_bottom = 152.0
+offset_left = 773.0
+offset_top = 348.0
+offset_right = 805.0
+offset_bottom = 380.0
 
 [connection signal="body_entered" from="dash_refill" to="." method="_on_dash_refill_body_entered"]
