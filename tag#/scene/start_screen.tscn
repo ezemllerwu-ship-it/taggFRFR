@@ -7,15 +7,15 @@ rotation = -0.0003152751
 script = ExtResource("1_gkif4")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1684857498]
-offset_right = 1152.0
-offset_bottom = 645.0
+offset_right = 359.21106
+offset_bottom = 180.3143
 color = Color(0.219501, 0.219501, 0.219501, 1)
 
 [node name="Button" type="Button" parent="." unique_id=1566459965]
-offset_left = 354.0
-offset_top = 215.0
-offset_right = 789.0
-offset_bottom = 378.0
+offset_left = 114.978874
+offset_top = 67.036255
+offset_right = 244.44876
+offset_bottom = 115.550255
 text = "start"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

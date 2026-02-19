@@ -7,4 +7,4 @@
 script = ExtResource("1_koe2p")
 
 [node name="start screen" parent="." unique_id=534828144 instance=ExtResource("2_8408x")]
-position = Vector2(-1.0000076, 0.9999962)
+position = Vector2(1.1920929e-07, 0)

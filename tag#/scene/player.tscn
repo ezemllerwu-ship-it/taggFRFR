@@ -3,49 +3,35 @@
 [ext_resource type="Script" uid="uid://bkvwyhadufa1p" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://cbhm0gge7r2kw" path="res://ass/player_v1.png" id="2_hjaqi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjaqi"]
-size = Vector2(72, 108)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hjaqi"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_xo3ru"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_hjaqi")
 }],
 "loop": true,
-"name": &"left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_hjaqi")
-}],
-"loop": true,
-"name": &"right",
+"name": &"default",
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D" unique_id=363455168]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjaqi"]
+size = Vector2(9, 15)
+
+[node name="player" type="CharacterBody2D" unique_id=363455168 groups=["player"]]
 z_index = 2
 script = ExtResource("1_hjaqi")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2045160626]
+sprite_frames = SubResource("SpriteFrames_xo3ru")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1595835913]
-position = Vector2(36, 54)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_hjaqi")
 
 [node name="RayCastWalls" type="Node2D" parent="." unique_id=1905348773]
 
 [node name="ray_cast_left" type="RayCast2D" parent="RayCastWalls" unique_id=885001261]
-position = Vector2(36, 54)
-target_position = Vector2(-42, 0)
+target_position = Vector2(-7, 0)
 
 [node name="ray_cast_right" type="RayCast2D" parent="RayCastWalls" unique_id=2044495858]
-position = Vector2(36, 54)
-target_position = Vector2(42, 0)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=238386672]
-position = Vector2(36, 54)
-scale = Vector2(6, 6)
-sprite_frames = SubResource("SpriteFrames_hjaqi")
-animation = &"left"
-autoplay = "left"
+target_position = Vector2(7.5, 0)

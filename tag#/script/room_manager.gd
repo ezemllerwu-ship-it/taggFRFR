@@ -1,38 +1,36 @@
 extends Node2D
 
-@onready var player = load("res://scene/player.tscn")
-@onready var room_manager = $"."
-@onready var room_1 = load("res://scene/room_1.tscn")
-@onready var room_2 = load("res://scene/room_2.tscn")
-var room_string = "res://scene/room_"
-var spawn_position
-var wanted_room = 0
+@onready var player_scene = load("res://scene/player.tscn")
+@onready var room_scene = load("res://scene/room_1.tscn")
+
+var spawn_position: Vector2 = Vector2.ZERO
+var current_player: CharacterBody2D
 
 func spawn_room():
-	wanted_room += 1
-	var room = load(room_string + str(wanted_room) + ".tscn").instantiate()
-	room_manager.add_child(room)
+	reset_room_manager()
+	var room = room_scene.instantiate()
+	add_child(room)
 	spawn_player()
 
 func spawn_player():
-	var player_instince = player.instantiate()
-	add_child(player_instince)
-	player_instince.global_position = spawn_position
+	if is_instance_valid(current_player):
+		current_player.queue_free()
+	
+	current_player = player_scene.instantiate()
+	add_child(current_player)
+	current_player.global_position = spawn_position
 
-func reset():
-	for n in room_manager.get_children():
-		room_manager.remove_child(n)
+func reset_room_manager():
+	for n in get_children():
 		n.queue_free()
 
 func kill():
-		var player_instince = get_node("player")
-		room_manager.remove_child(player_instince)
-		player_instince.queue_free()
-		spawn_player()
+	spawn_player()
 
 func dash_refill():
-	var player_instince = get_node("player")
-	$player.dash_refill()
-
-func set_spawn(spawn):
-	spawn_position = spawn
+	if is_instance_valid(current_player) and current_player.has_method("dash_refill"):
+		current_player.dash_refill()
+	else :
+		print("fusk")
+func set_spawn(pos: Vector2):
+	spawn_position = pos

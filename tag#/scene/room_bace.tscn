@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bdh7pd4jhofa4"]
+
+[ext_resource type="Script" uid="uid://b11p4qhegbg5i" path="res://script/room_script.gd" id="1_e8eha"]
+
+[node name="room_bace" type="Node2D" unique_id=1525129291]
+script = ExtResource("1_e8eha")
+
+[node name="spawn" type="Marker2D" parent="." unique_id=985154187]
+
+[node name="leave" type="Area2D" parent="." unique_id=560479336]
+
+[node name="kill_box" type="Area2D" parent="." unique_id=1565154551]
+
+[node name="dash_refill" type="Area2D" parent="." unique_id=2144743727]
+
+[node name="world_border" type="StaticBody2D" parent="." unique_id=42452921]
+
+[node name="obsticals" type="StaticBody2D" parent="." unique_id=247840107]
