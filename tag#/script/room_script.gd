@@ -28,10 +28,7 @@ func _on_dash_refill_body_entered(body: Node2D) -> void:
 		room_manager.dash_refill()
 		refill_timer.start()
 		var tween = create_tween()
-		tween.tween_property(refill_visual, "modulate:a", 0.0, 0.2) # Fade to transparent in 0.2s
-	else :
-		print("duck")
+		tween.tween_property(refill_visual, "modulate:a", 0.0, 0.2)
 func _on_refill_ready():
-	# Fade the visual back in
 	var tween = create_tween()
-	tween.tween_property(refill_visual, "modulate:a", 1.0, 0.5) # Fade to solid in 0.5s
+	tween.tween_property(refill_visual, "modulate:a", 1.0, 0.5)

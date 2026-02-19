@@ -12,6 +12,10 @@ func spawn_room():
 	add_child(room)
 	spawn_player()
 
+func reset_room_manager():
+	for n in get_children():
+		n.queue_free()
+
 func spawn_player():
 	if is_instance_valid(current_player):
 		current_player.queue_free()
@@ -20,17 +24,21 @@ func spawn_player():
 	add_child(current_player)
 	current_player.global_position = spawn_position
 
-func reset_room_manager():
-	for n in get_children():
-		n.queue_free()
-
 func kill():
+	if !is_instance_valid(current_player): return
+	Engine.time_scale = 0.0
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	Engine.time_scale = 1.0
+	current_player.visible = false
+	current_player.set_physics_process(false)
+	await get_tree().create_timer(0.2).timeout
 	spawn_player()
 
 func dash_refill():
-	if is_instance_valid(current_player) and current_player.has_method("dash_refill"):
-		current_player.dash_refill()
-	else :
-		print("fusk")
+	if is_instance_valid(current_player):
+		current_player.has_dash = true
+		if current_player.has_method("on_dash_refill"):
+			current_player.on_dash_refill()
+
 func set_spawn(pos: Vector2):
 	spawn_position = pos

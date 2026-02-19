@@ -11,11 +11,16 @@ offset_right = 359.21106
 offset_bottom = 180.3143
 color = Color(0.219501, 0.219501, 0.219501, 1)
 
-[node name="Button" type="Button" parent="." unique_id=1566459965]
-offset_left = 114.978874
-offset_top = 67.036255
-offset_right = 244.44876
-offset_bottom = 115.550255
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=281084074]
+offset_left = 114.99053
+offset_top = 30.036257
+offset_right = 245.18188
+offset_bottom = 158.40453
+focus_neighbor_top = NodePath("Button")
+vertical = true
+
+[node name="Button" type="Button" parent="BoxContainer" unique_id=1566459965]
+layout_mode = 2
 text = "start"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BoxContainer/Button" to="." method="_on_button_pressed"]
