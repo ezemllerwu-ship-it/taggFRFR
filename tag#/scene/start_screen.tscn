@@ -7,20 +7,29 @@ rotation = -0.0003152751
 script = ExtResource("1_gkif4")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1684857498]
-offset_right = 359.21106
-offset_bottom = 180.3143
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.60553
+offset_top = -90.15715
+offset_right = 179.60553
+offset_bottom = 90.15715
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.219501, 0.219501, 0.219501, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="BoxContainer" type="BoxContainer" parent="." unique_id=281084074]
-offset_left = 114.99053
-offset_top = 30.036257
-offset_right = 245.18188
-offset_bottom = 158.40453
-focus_neighbor_top = NodePath("Button")
-vertical = true
-
-[node name="Button" type="Button" parent="BoxContainer" unique_id=1566459965]
-layout_mode = 2
+[node name="Button" type="Button" parent="." unique_id=1566459965]
+offset_left = -69.99369
+offset_top = -20.022068
+offset_right = 70.10981
+offset_bottom = 19.977932
 text = "start"
+text_overrun_behavior = 1
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="BoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1522630944]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -15,7 +15,7 @@ const MIN_JUMP_FORCE := 50.0
 const COYOTE_TIME := 0.08
 const JUMP_BUFFER := 0.10
 
-const WALL_SLIDE_SPEED := 800
+const WALL_SLIDE_SPEED := 100
 const WALL_JUMP_FORCE := Vector2(140, -110)
 const WALL_JUMP_LOCK := 0.15
 

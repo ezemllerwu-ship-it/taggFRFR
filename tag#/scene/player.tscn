@@ -1,21 +1,58 @@
 [gd_scene format=3 uid="uid://btceqrvb6h4g5"]
 
 [ext_resource type="Script" uid="uid://bkvwyhadufa1p" path="res://script/player.gd" id="1_hjaqi"]
-[ext_resource type="Texture2D" uid="uid://cbhm0gge7r2kw" path="res://ass/player_v1.png" id="2_hjaqi"]
+[ext_resource type="Texture2D" uid="uid://du5om0krmvw48" path="res://ass/player_v1-sheet.png" id="2_hjaqi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvtld"]
+atlas = ExtResource("2_hjaqi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct4mp"]
+atlas = ExtResource("2_hjaqi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
+atlas = ExtResource("2_hjaqi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5ij"]
+atlas = ExtResource("2_hjaqi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp4bs"]
+atlas = ExtResource("2_hjaqi")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xo3ru"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_hjaqi")
+"texture": SubResource("AtlasTexture_fvtld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct4mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4jxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp4bs")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjaqi"]
-size = Vector2(9, 15)
+size = Vector2(9, 14)
 
 [node name="player" type="CharacterBody2D" unique_id=363455168 groups=["player"]]
 z_index = 2
@@ -23,10 +60,11 @@ script = ExtResource("1_hjaqi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2045160626]
 sprite_frames = SubResource("SpriteFrames_xo3ru")
-frame_progress = 0.107894175
+animation = &"new_animation"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1595835913]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_hjaqi")
 
 [node name="RayCastWalls" type="Node2D" parent="." unique_id=1905348773]
