@@ -1,9 +1,19 @@
 [gd_scene format=3 uid="uid://bdh7pd4jhofa4"]
 
 [ext_resource type="Script" uid="uid://b11p4qhegbg5i" path="res://script/room_script.gd" id="1_e8eha"]
+[ext_resource type="Texture2D" uid="uid://cmt2oqvcxj0x2" path="res://ass/spight shets/back/city 1/10.png" id="2_hgdeo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0nhd"]
+size = Vector2(640, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qphyu"]
+size = Vector2(640, 360)
 
 [node name="room_bace" type="Node2D" unique_id=1525129291]
 script = ExtResource("1_e8eha")
+
+[node name="10" type="Sprite2D" parent="." unique_id=541071231]
+texture = ExtResource("2_hgdeo")
 
 [node name="spawn" type="Marker2D" parent="." unique_id=985154187]
 
@@ -16,3 +26,17 @@ script = ExtResource("1_e8eha")
 [node name="world_border" type="StaticBody2D" parent="." unique_id=42452921]
 
 [node name="obsticals" type="StaticBody2D" parent="." unique_id=247840107]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=358591913]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=550516931]
+position = Vector2(-827, 335)
+shape = SubResource("RectangleShape2D_e0nhd")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=86038964]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1790304693]
+position = Vector2(-181, 132)
+shape = SubResource("RectangleShape2D_qphyu")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=722182825]

@@ -5,7 +5,7 @@ extends Node2D
 var refill_timer: Timer
 
 func _ready() -> void:
-	room_manager.set_spawn($spawn.global_position)
+   	room_manager.set_spawn($spawn.global_position)
 	
 	# Setup the timer
 	refill_timer = Timer.new()

@@ -14,9 +14,6 @@ size = Vector2(108, 7.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6iq"]
 size = Vector2(8, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wrqj"]
-size = Vector2(732, 20)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qhtx"]
 size = Vector2(31, 20)
 
@@ -47,7 +44,6 @@ script = ExtResource("1_p56th")
 offset_right = 368.0
 offset_bottom = 176.0
 color = Color(0.4902547, 0.48900425, 0.5947523, 1)
-metadata/_edit_lock_ = true
 
 [node name="flore" type="ColorRect" parent="look" unique_id=1669752762]
 offset_left = -15.0
@@ -55,6 +51,7 @@ offset_top = 176.0
 offset_right = 385.0
 offset_bottom = 196.0
 color = Color(0.3854925, 0.38549247, 0.38549247, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="wight" type="Node2D" parent="look" unique_id=126607759]
 
@@ -64,6 +61,7 @@ offset_top = 156.0
 offset_right = 91.0
 offset_bottom = 176.0
 color = Color(0.992559, 0.8680253, 0.8746252, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="look/wight" unique_id=1475869490]
 offset_left = 129.0
@@ -71,6 +69,7 @@ offset_top = 156.0
 offset_right = 161.0
 offset_bottom = 176.0
 color = Color(0.992559, 0.8680253, 0.8746252, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="look/wight" unique_id=1004035660]
 offset_left = 269.0
@@ -78,6 +77,7 @@ offset_top = 156.0
 offset_right = 301.0
 offset_bottom = 176.0
 color = Color(0.992559, 0.8680253, 0.8746252, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="look/wight" unique_id=558981643]
 offset_left = 335.0
@@ -85,12 +85,14 @@ offset_top = 131.0
 offset_right = 364.0
 offset_bottom = 139.0
 color = Color(0.992559, 0.8680253, 0.8746252, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect5" type="ColorRect" parent="look/wight" unique_id=1189934398]
 offset_left = 358.0
 offset_right = 364.0
 offset_bottom = 131.0
 color = Color(0.992559, 0.8680253, 0.8746252, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect6" type="ColorRect" parent="look/wight" unique_id=623558966]
 offset_left = 316.0
@@ -98,6 +100,7 @@ offset_top = 38.0
 offset_right = 322.0
 offset_bottom = 97.0
 color = Color(0.992559, 0.8680253, 0.8746252, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect7" type="ColorRect" parent="look/wight" unique_id=443987047]
 offset_left = 62.0
@@ -105,6 +108,7 @@ offset_top = 53.0
 offset_right = 93.0
 offset_bottom = 67.0
 color = Color(0.992559, 0.8680253, 0.8746252, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="red" type="Node2D" parent="look" unique_id=400714145]
 
@@ -132,6 +136,7 @@ offset_top = 139.0
 offset_right = 364.0
 offset_bottom = 176.0
 color = Color(0, 0.37254903, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="spawn" type="Marker2D" parent="." unique_id=207672386]
 position = Vector2(28, 137)
@@ -141,19 +146,16 @@ position = Vector2(28, 137)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="leave" unique_id=2036977693]
 position = Vector2(361, 157.5)
 shape = SubResource("RectangleShape2D_p56th")
-metadata/_edit_lock_ = true
 
 [node name="kill_box" type="Area2D" parent="." unique_id=584912092]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill_box" unique_id=1302244074]
 position = Vector2(110, 172)
 shape = SubResource("RectangleShape2D_q4qhe")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="kill_box" unique_id=1099983244]
 position = Vector2(215, 172)
 shape = SubResource("RectangleShape2D_rmt0s")
-metadata/_edit_lock_ = true
 
 [node name="dash_refill" type="Area2D" parent="." unique_id=397661283]
 
@@ -163,6 +165,7 @@ offset_top = 23.0
 offset_right = 193.0
 offset_bottom = 31.0
 color = Color(0.7383675, 0.0004168123, 0.7383623, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dash_refill" unique_id=649784894]
 position = Vector2(189, 27)
@@ -170,47 +173,35 @@ shape = SubResource("RectangleShape2D_pp6iq")
 
 [node name="world_border" type="StaticBody2D" parent="." unique_id=343116829]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="world_border" unique_id=1180203139]
-position = Vector2(19, 186)
-shape = SubResource("RectangleShape2D_7wrqj")
-
 [node name="obsticals" type="StaticBody2D" parent="." unique_id=2118945084]
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="obsticals" unique_id=462105744]
 position = Vector2(75.5, 166)
 shape = SubResource("RectangleShape2D_3qhtx")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="obsticals" unique_id=737489272]
 position = Vector2(145, 166)
 shape = SubResource("RectangleShape2D_ivjal")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="obsticals" unique_id=1655449331]
 position = Vector2(285, 166)
 shape = SubResource("RectangleShape2D_aw7xa")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="obsticals" unique_id=961257848]
 position = Vector2(349.5, 135)
 shape = SubResource("RectangleShape2D_j685d")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="obsticals" unique_id=655988160]
 position = Vector2(361, 65.5)
 shape = SubResource("RectangleShape2D_ydl2e")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="obsticals" unique_id=2032432918]
 position = Vector2(319, 67.5)
 shape = SubResource("RectangleShape2D_3doac")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="obsticals" unique_id=1446669089]
 position = Vector2(77.5, 60)
 shape = SubResource("RectangleShape2D_57ylw")
-metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="leave" to="." method="_on_leave_body_entered"]
 [connection signal="body_entered" from="kill_box" to="." method="_on_kill_box_body_entered"]

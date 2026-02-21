@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://qln3lfomi6xa"]
+
+[ext_resource type="Texture2D" uid="uid://cmt2oqvcxj0x2" path="res://ass/spight shets/back/city 1/10.png" id="2_bdfyo"]
+
+[node name="room_bace" type="Node2D" unique_id=1525129291]
+
+[node name="spawn" type="Marker2D" parent="." unique_id=985154187]
+
+[node name="leave" type="Area2D" parent="." unique_id=560479336]
+
+[node name="kill_box" type="Area2D" parent="." unique_id=1565154551]
+
+[node name="dash_refill" type="Area2D" parent="." unique_id=2144743727]
+
+[node name="world_border" type="StaticBody2D" parent="." unique_id=42452921]
+
+[node name="obsticals" type="StaticBody2D" parent="." unique_id=247840107]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1731587009]
+
+[node name="10" type="Sprite2D" parent="." unique_id=1506857995]
+texture = ExtResource("2_bdfyo")
