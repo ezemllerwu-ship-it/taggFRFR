@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-# --- Constants ---
 const ACCEL := 1000.0
 const MAX_SPEED := 110.0
 const FRICTION := 800.0 
