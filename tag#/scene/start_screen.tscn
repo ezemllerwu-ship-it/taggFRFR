@@ -22,14 +22,24 @@ color = Color(0.219501, 0.219501, 0.219501, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="." unique_id=1566459965]
+<<<<<<< HEAD
 offset_left = -69.99369
 offset_top = -20.022068
 offset_right = 70.10981
 offset_bottom = 19.977932
+=======
+offset_left = 114.978874
+offset_top = 67.036255
+offset_right = 244.44876
+offset_bottom = 115.550255
+>>>>>>> parent of f9c33dd (a player script that work so when i brake the player just go back to this)
 text = "start"
 text_overrun_behavior = 1
 metadata/_edit_use_anchors_ = true
 
+<<<<<<< HEAD
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1522630944]
 
+=======
+>>>>>>> parent of f9c33dd (a player script that work so when i brake the player just go back to this)
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
